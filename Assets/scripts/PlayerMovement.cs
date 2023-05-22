@@ -15,6 +15,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera:")]
     public Camera cam;
 
+    [Header("Player Sprite:")]
+    public Transform playerTrans;
+
+    [Header("Controller Object:")]
+    public Transform controllerTrans;
+    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        playerTrans.position = controllerTrans.position;
 
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
