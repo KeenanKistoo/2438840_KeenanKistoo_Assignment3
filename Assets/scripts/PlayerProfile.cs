@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PlayerProfile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Scripts:")]
+    public PlayerProfile profile;
+    public SelectedCharacter character;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Player Info:")]
+    public int id;
+    public string playerName;
+    public string playerDescription;
+    public string passive;
+    public int passiveVal;
+    public string tactical;
+    public int maxTact;
+    public int tacVal;
+    public string ability;
+    public int abilityDmg;
+
+
+    public void SelectCharacter()
     {
-        
+        character.profile = profile;
     }
 }
