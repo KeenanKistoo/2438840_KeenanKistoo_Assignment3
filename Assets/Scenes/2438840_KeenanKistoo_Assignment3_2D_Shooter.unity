@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 136320707}
   character: {fileID: 460791171}
+  move: {fileID: 0}
   id: 1
   playerName: Osmond
   playerDescription: A mortal who is believed to be touched by God
@@ -179,6 +180,10 @@ MonoBehaviour:
   tacVal: 0
   ability: 
   abilityDmg: 0
+  anim: {fileID: 9100000, guid: e216844562d8b124aa945bdb74b82f9c, type: 2}
+  animCon: {fileID: 1567057106}
+  bulletPrefab: {fileID: 3930907780792184981, guid: 17d8d2b42e0c45946917f762f6143c3e, type: 3}
+  shooting: {fileID: 1901854264}
 --- !u!1 &246614127
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 555080041}
   character: {fileID: 460791171}
+  move: {fileID: 0}
   id: 2
   playerName: Starkad
   playerDescription: The stone warrior
@@ -627,6 +633,10 @@ MonoBehaviour:
   tacVal: 0
   ability: 
   abilityDmg: 0
+  anim: {fileID: 9100000, guid: 56b830f3a0b20f345ac098ac92918713, type: 2}
+  animCon: {fileID: 1567057106}
+  bulletPrefab: {fileID: 3876754392947474806, guid: 2722256fcd70ced418aa5bb12a5fd03f, type: 3}
+  shooting: {fileID: 1901854264}
 --- !u!1 &559639394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 1149407428}
   character: {fileID: 460791171}
+  move: {fileID: 0}
   id: 3
   playerName: Hakon
   playerDescription: The youngest son of the high king
@@ -1018,6 +1029,10 @@ MonoBehaviour:
   tacVal: 0
   ability: 
   abilityDmg: 0
+  anim: {fileID: 9100000, guid: 4642e8a99d874d5409b62a2421fe5f4e, type: 2}
+  animCon: {fileID: 1567057106}
+  bulletPrefab: {fileID: 8865252513306742982, guid: d10c2d58f79e77244b671956be0d37c3, type: 3}
+  shooting: {fileID: 1901854264}
 --- !u!1 &1268959295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,8 +1335,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567057105}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27902418, y: 0.102777, z: 0.64752036}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1417,6 +1432,7 @@ GameObject:
   - component: {fileID: 1901854263}
   - component: {fileID: 1901854262}
   - component: {fileID: 1901854261}
+  - component: {fileID: 1901854264}
   m_Layer: 0
   m_Name: player_obj
   m_TagString: Untagged
@@ -1440,6 +1456,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   playerTrans: {fileID: 1567057108}
   controllerTrans: {fileID: 1901854263}
+  anim: {fileID: 1567057106}
 --- !u!50 &1901854262
 Rigidbody2D:
   serializedVersion: 4
@@ -1471,10 +1488,26 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2141508823}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901854264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901854260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb2c21be2550be408ac36528718e756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPos: {fileID: 2141508823}
+  bulletPrefab: {fileID: 3930907780792184981, guid: 17d8d2b42e0c45946917f762f6143c3e, type: 3}
+  bulletForce: 0
 --- !u!1 &2086670727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,3 +1641,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086670727}
   m_CullTransparentMesh: 1
+--- !u!1 &2141508822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141508823}
+  m_Layer: 0
+  m_Name: shoot_pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2141508823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141508822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1901854263}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
