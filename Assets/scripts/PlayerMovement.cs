@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Animator Controller:")]
     public Animator anim;
-    
+
+    public float rbAngle;
 
     private void Start()
     {
@@ -45,30 +46,29 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+        rbAngle = angle;
 
-        if (angle >= 0 && angle < 60f)
-        {
-            
-            anim.Play("right");
-        } else if (angle >= 60f && angle < 120f)
+        AnimCheck();
+
+    }
+     public void AnimCheck()
+    {
+        if(rbAngle <= 40f && rbAngle > -40f)
         {
             anim.Play("back");
-        }else if(angle >= 120f && angle < 180f)
+        }else if (rbAngle > 40f && rbAngle <= 90f)
         {
             anim.Play("left");
-        }else if(angle > -60f && angle <= 0)
+        }else if( rbAngle >= -270f &&  rbAngle < -210f)
         {
-            anim.Play("right");
-        }else if (angle > -120f && angle < -60f)
+            anim.Play("left");
+        }else if(rbAngle >= -210f && rbAngle < -180f)
         {
             anim.Play("front");
-        }else if(angle >= -180f && angle < -120f)
+        }else if(rbAngle >= -180f && rbAngle < 45f)
         {
-            anim.Play("left");
-        }
-        else
-        {
-            anim.Play("idle");
+            anim.Play("right");
         }
     }
+    
 }

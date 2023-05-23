@@ -1316,7 +1316,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1457,6 +1457,7 @@ MonoBehaviour:
   playerTrans: {fileID: 1567057108}
   controllerTrans: {fileID: 1901854263}
   anim: {fileID: 1567057106}
+  rbAngle: 0
 --- !u!50 &1901854262
 Rigidbody2D:
   serializedVersion: 4
@@ -1507,7 +1508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPos: {fileID: 2141508823}
   bulletPrefab: {fileID: 3930907780792184981, guid: 17d8d2b42e0c45946917f762f6143c3e, type: 3}
-  bulletForce: 0
+  bulletForce: 10
 --- !u!1 &2086670727
 GameObject:
   m_ObjectHideFlags: 0

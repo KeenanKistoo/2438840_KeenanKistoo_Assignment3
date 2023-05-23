@@ -22,7 +22,7 @@ public class Shooting : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, shootPos.position, shootPos.rotation); //= new Quaternion(shootPos.rotation.x, shootPos.rotation.y, shootPos.rotation.z - 90f, shootPos.rotation.w));
+        GameObject bullet = Instantiate(bulletPrefab, shootPos.position, shootPos.rotation); 
          Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
         bulletRb.AddForce(shootPos.up * bulletForce, ForceMode2D.Impulse);
