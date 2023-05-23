@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.y = Input.GetAxisRaw("Vertical");
 
         mousePos =  cam.ScreenToWorldPoint(Input.mousePosition);
+
+        
     }
 
     void FixedUpdate()
@@ -48,11 +50,11 @@ public class PlayerMovement : MonoBehaviour
         rb.rotation = angle;
         rbAngle = angle;
 
-        AnimCheck();
+        WalkCheck();
 
     }
      public void AnimCheck()
-    {
+     {
         if(rbAngle <= 40f && rbAngle > -40f)
         {
             anim.Play("back");
@@ -69,6 +71,20 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.Play("right");
         }
+     }
+    public void WalkCheck()
+    {
+        bool wPressed = Input.GetKey(KeyCode.W);
+        bool aPressed = Input.GetKey(KeyCode.A);
+        bool sPressed = Input.GetKey(KeyCode.S);
+        bool dPressed = Input.GetKey(KeyCode.D);
+
+        if(!wPressed && !aPressed && !sPressed && !dPressed)
+        {
+            anim.Play("idle");
+        }else if (wPressed ||  aPressed || sPressed || dPressed)
+        {
+            AnimCheck();
+        }
     }
-    
 }
