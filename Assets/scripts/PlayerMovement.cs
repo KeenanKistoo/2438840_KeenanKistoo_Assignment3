@@ -37,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
         mousePos =  cam.ScreenToWorldPoint(Input.mousePosition);
 
+        Vector3 player = new Vector3(playerTrans.position.x, playerTrans.position.y, playerTrans.position.z);
+
+        cam.transform.position = new Vector3(player.x, player.y, -10f);
         
     }
 
