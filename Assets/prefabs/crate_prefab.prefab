@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 5063162996702779669}
   - component: {fileID: 8580445924894509755}
   - component: {fileID: 6803893428585329775}
+  - component: {fileID: 1493660329538869467}
   m_Layer: 0
   m_Name: crate_prefab
   m_TagString: Untagged
@@ -412,6 +413,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1493660329538869467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668467950794272802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5fdac6478f01b4dac349e43a570a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitCount: 0
+  boxes:
+  - {fileID: 4466334966173192746}
+  - {fileID: 1010934616530675878}
+  - {fileID: 3066371750743430064}
+  - {fileID: 3396328531354263826}
+  - {fileID: 7863651957961116758}
 --- !u!1 &7863651957961116758
 GameObject:
   m_ObjectHideFlags: 0
