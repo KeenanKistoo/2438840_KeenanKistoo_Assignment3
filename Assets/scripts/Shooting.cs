@@ -12,12 +12,14 @@ public class Shooting : MonoBehaviour
 
     public float bulletForce = 20f;
 
+    public int reloadCount;
+
 
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            AmmoCheck();
         }
     }
 
@@ -28,13 +30,65 @@ public class Shooting : MonoBehaviour
 
         bulletRb.AddForce(shootPos.up * bulletForce, ForceMode2D.Impulse);
 
-        int count = orbControl.orbCount;
+        
 
-        if(count > -1)
+        
+    }
+
+    public void AmmoCheck()
+    {
+        int count = orbControl.orbCount;
+        if (count > -1)
         {
             orbControl.orbActive[count].SetActive(false);
             orbControl.orbInactive[count].SetActive(true);
             orbControl.orbCount--;
+            Shoot();
+        }
+        else if (orbControl.orbCount <= -1)
+        {
+            print("empty");
+            StartCoroutine(Reload());
         }
     }
+
+    IEnumerator Reload()
+    {
+        reloadCount = 0;
+        orbControl.orbActive[reloadCount].SetActive(true);
+        orbControl.orbInactive[reloadCount].SetActive(false);
+        reloadCount++;
+        yield return new WaitForSeconds(0.25f);
+
+        orbControl.orbActive[reloadCount].SetActive(true);
+        orbControl.orbInactive[reloadCount].SetActive(false);
+        reloadCount++;
+        yield return new WaitForSeconds(0.25f);
+
+        orbControl.orbActive[reloadCount].SetActive(true);
+        orbControl.orbInactive[reloadCount].SetActive(false);
+        reloadCount++;
+        yield return new WaitForSeconds(0.25f);
+
+        orbControl.orbActive[reloadCount].SetActive(true);
+        orbControl.orbInactive[reloadCount].SetActive(false);
+        reloadCount++;
+        yield return new WaitForSeconds(0.25f);
+
+        orbControl.orbActive[reloadCount].SetActive(true);
+        orbControl.orbInactive[reloadCount].SetActive(false);
+        reloadCount++;
+        yield return new WaitForSeconds(0.25f);
+
+        orbControl.orbActive[reloadCount].SetActive(true);
+        orbControl.orbInactive[reloadCount].SetActive(false);
+        reloadCount++;
+        orbControl.orbCount = orbControl.maxOrb;
+
+
+
+
+    }
 }
+
+
