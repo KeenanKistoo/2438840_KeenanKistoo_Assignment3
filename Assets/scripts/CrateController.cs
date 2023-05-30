@@ -10,11 +10,15 @@ public class CrateController : MonoBehaviour
     public Sprite[] potions;
     public GameObject potionBottle;
     public int id;
+    public bool canCollect;
+
 
     private void Start()
     {
         BoxSetup();
         RandomPowerup();
+        print(id);
+        potionBottle.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {
@@ -41,11 +45,20 @@ public class CrateController : MonoBehaviour
        
         if (hitCount >= boxes.Length)
         {
-            print("complete");
+            boxes[hitCount - 1].SetActive(false);
+            canCollect = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            //print(canCollect);
         } else if (hitCount < boxes.Length)
         {
             boxes[hitCount].SetActive(true);
             boxes[hitCount - 1].SetActive(false);
+            canCollect = false;
+        }
+
+        if(hitCount == boxes.Length)
+        {
+            potionBottle.SetActive(true);
         }
     }
 
@@ -58,22 +71,26 @@ public class CrateController : MonoBehaviour
         {
             id = 0;
             rend.sprite = potions[0];
-            print("heal");
+            //print("heal");
         }else if(ranNum == 2)
         {
             id = 1;
             rend.sprite = potions[1];
-            print("Dmg overload");
-        }else if(ranNum == 5 || ranNum == 6 || ranNum == 8)
+            //print("Dmg overload");
+        }else if(ranNum == 5 || ranNum == 6 || ranNum == 8 || ranNum == 0)
         {
             id = 2;
             rend.sprite = potions[2];
-            print("poison");
+            //print("poison");
         }
         else
         {
-            print("heal");
+            id = 0;
+            rend.sprite = potions[0];
+            //print("heal");
         }
-        
+        //print(ranNum);
     }
+
+    
 }

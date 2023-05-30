@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Loot
   - Bullet
+  - PowerUp
   layers:
   - Default
   - TransparentFX

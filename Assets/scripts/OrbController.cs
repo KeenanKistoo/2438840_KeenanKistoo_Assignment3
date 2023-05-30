@@ -39,7 +39,7 @@ public class OrbController : MonoBehaviour
             
             orbActive[i].SetActive(true);
             orbInactive[i].SetActive(false);
-            print("done");
+            //print("done");
         }
     }
 
