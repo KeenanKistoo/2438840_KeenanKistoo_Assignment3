@@ -14,12 +14,22 @@ public class Shooting : MonoBehaviour
 
     public int reloadCount;
 
+    public bool canShoot;
+
 
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            AmmoCheck();
+            if (canShoot) {
+                AmmoCheck();
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            canShoot = false;
+            StartCoroutine(Reload());
         }
     }
 
@@ -29,9 +39,6 @@ public class Shooting : MonoBehaviour
          Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
         bulletRb.AddForce(shootPos.up * bulletForce, ForceMode2D.Impulse);
-
-        
-
         
     }
 
@@ -54,6 +61,13 @@ public class Shooting : MonoBehaviour
 
     IEnumerator Reload()
     {
+        canShoot = false;
+        for (int i = 0;i < 6;i++)
+        {
+            orbControl.orbActive[i].SetActive(false);
+            orbControl.orbInactive[i].SetActive(true);
+        }
+        yield return new WaitForSeconds(0.1f);
         reloadCount = 0;
         orbControl.orbActive[reloadCount].SetActive(true);
         orbControl.orbInactive[reloadCount].SetActive(false);
@@ -84,10 +98,8 @@ public class Shooting : MonoBehaviour
         orbControl.orbInactive[reloadCount].SetActive(false);
         reloadCount++;
         orbControl.orbCount = orbControl.maxOrb;
-
-
-
-
+        reloadCount = 0;
+        canShoot = true;
     }
 }
 
