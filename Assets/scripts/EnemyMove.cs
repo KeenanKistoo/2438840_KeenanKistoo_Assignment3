@@ -8,6 +8,7 @@ public class EnemyMove : MonoBehaviour
     public float speed;
     public float stopDistance;
     public bool control;
+   
 
     public GameObject target;
     // Start is called before the first frame update
@@ -33,4 +34,8 @@ public class EnemyMove : MonoBehaviour
             print("Reached");
         }
     }
+
+    
+
+
 }
