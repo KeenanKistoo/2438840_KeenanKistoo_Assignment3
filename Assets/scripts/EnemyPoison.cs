@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyPoison : MonoBehaviour
 {
     [Header("Enemy Componenets:")]
     public GameObject enemy;
     public GameObject radius;
-    
-    
+
+    [Header("Slider:")]
+    public Slider healthBar;
+    public int maxHealth;
 
     [Header("Variables:")]
     private float minRad;
@@ -22,6 +25,8 @@ public class EnemyPoison : MonoBehaviour
         minRad = 1f;
         maxRad = 3f;
         inc = true;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = healthBar.maxValue;
     }
 
     private void Update()
@@ -30,8 +35,15 @@ public class EnemyPoison : MonoBehaviour
       
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            print("bullet");
+            healthBar.value -= 1f;
+        }
+    }
 
-    
     public void RadiusCheck()
     {
         if (inc)
@@ -41,7 +53,7 @@ public class EnemyPoison : MonoBehaviour
             Vector3 maxTransform = new Vector3 (maxRad, maxRad, 1f);
             if(radius.transform.localScale.x >= maxTransform.x)
             {
-                print("reached max");
+              //  print("reached max");
                 inc = false;
             }
         }else if (!inc)
@@ -51,7 +63,7 @@ public class EnemyPoison : MonoBehaviour
             Vector3 minTransform = new Vector3(minRad, minRad, 1f);
             if (radius.transform.localScale.x <=  minTransform.x)
             {
-                print("reached min");
+                //print("reached min");
                 inc = true;
             }
         }
