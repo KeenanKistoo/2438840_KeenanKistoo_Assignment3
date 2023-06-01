@@ -33,6 +33,21 @@ public class BulletBehaviour : MonoBehaviour
             print("player hit");
             Slider bar = GameObject.FindGameObjectWithTag("Healthbar").GetComponent<Slider>();
             bar.value -= 1f;
+
+            
+
+            StartCoroutine(PlayerColour(this.gameObject));
         }
+    }
+
+    IEnumerator PlayerColour(GameObject destroyed)
+    {
+        GameObject.FindGameObjectWithTag("Anim").GetComponent<SpriteRenderer>().color = Color.red;
+        destroyed.GetComponent<Transform>().localScale = Vector3.zero;
+        yield return new WaitForSeconds(0.25f);
+
+        GameObject.FindGameObjectWithTag("Anim").GetComponent<SpriteRenderer>().color = Color.white;
+        Destroy(destroyed);
+
     }
 }

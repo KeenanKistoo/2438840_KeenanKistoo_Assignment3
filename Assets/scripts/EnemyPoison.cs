@@ -17,11 +17,17 @@ public class EnemyPoison : MonoBehaviour
     private float minRad;
     private float maxRad;
     public bool inc;
+
+    
+    public RuntimeAnimatorController animControl;
+
+    public GameObject comms;
+    public Transform spawnComms;
     
     
     private void Start()
     {
-        
+        GetComponent<Animator>().enabled = false;
         minRad = 1f;
         maxRad = 3f;
         inc = true;
@@ -32,7 +38,7 @@ public class EnemyPoison : MonoBehaviour
     private void Update()
     {
         RadiusCheck();
-      
+      StartCoroutine(EnemyHealth());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,6 +47,10 @@ public class EnemyPoison : MonoBehaviour
         {
             print("bullet");
             healthBar.value -= 1f;
+            GameObject minusOne = Instantiate(comms, spawnComms.transform.position, Quaternion.identity);
+            minusOne.transform.position = spawnComms.transform.position;
+
+            //Destroy(minusOne, 0.6f);
         }
     }
 
@@ -69,6 +79,23 @@ public class EnemyPoison : MonoBehaviour
         }
     }
 
-    
+    IEnumerator EnemyHealth()
+    {
+        if(healthBar.value <= 0)
+        {
+
+            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
+            Animator anim = GetComponent<Animator>();
+            anim.enabled = true;
+            anim.runtimeAnimatorController = animControl;
+
+            
+
+            yield return new WaitForSeconds(0.5f);
+            this.gameObject.SetActive(false);
+        }
+    }
     
 }

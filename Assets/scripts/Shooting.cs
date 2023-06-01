@@ -16,6 +16,10 @@ public class Shooting : MonoBehaviour
 
     public bool canShoot;
 
+    public GameObject player;
+    public float offsetX;
+    public float offsetY;
+
 
     void Update()
     {
@@ -37,8 +41,10 @@ public class Shooting : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, shootPos.position, shootPos.rotation); 
          Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-
+        Transform playerTrans = player.transform;
         bulletRb.AddForce(shootPos.up * bulletForce, ForceMode2D.Impulse);
+        
+        playerTrans.position = new Vector3(playerTrans.position.x + offsetX, playerTrans.position.y + offsetY, 0);
         Destroy(bullet, 2f);
         
     }

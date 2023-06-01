@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - PowerUp
   - Healthbar
+  - Anim
   layers:
   - Default
   - TransparentFX
